@@ -40,3 +40,21 @@
 .title {
   text-align: center;
 }
+
+.detail-section {
+  width: 100%;
+  display: flex;
+}
+
+.detail-container {
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.detail-title {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
