@@ -5,93 +5,71 @@ import Stress from './Stress';
 import Vibe from './Vibe';
 import Countdown from './Countdown';
 
+
+require('dotenv').config();
+
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       stress: 0, //google sheets api call
-      color: "#000000", //google sheets api call
+      color: "#AFAFAF", //google sheets api call
       available: true, //google calendar api call
-      "time-until-availability-change": 102, //google calendar api call
-      width: 0, 
-      height: 0 
+      "time-until-availability-change": 0, //google calendar api call
     };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    this.updateStress = this.updateStress.bind(this);
   }
   
   componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
+    this.updateStress();
+    // window.addEventListener('', this.updateState);
   }
   
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
+    // window.addEventListener('', this.updateState);
   }
   
-  updateWindowDimensions() {
-    let newWidth = (window.innerWidth > 500) ? window.innerWidth : 500;
-    let newHeight = (window.innerHeight > 300) ? window.innerHeight : 300;
-    this.setState({ width: newWidth, height: newHeight });
+  updateStress() {
+    this.fetchStress().then(stress => {
+      this.setState({
+        stress: stress
+      });    
+    });
   }
 
-  getColor() {
+  async fetchStress(cell) {
+    cell = (typeof cell === "undefined") ? "E17" : cell; //E17 is where Stress Level is stored
+    let call = "https://sheets.googleapis.com/v4/spreadsheets/" + process.env.REACT_APP_TODO_ID;
+    call += "/values/Aggregate!" + cell + "?key=" + process.env.REACT_APP_GOOGLE_API_KEY;
+    return fetch(call).then(res => res.json()).then(json => json.values[0][0]);
+  }
 
+  getColor(stress, available) {
+    if (typeof stress === "undefined" || !available) {
+      return "#AFAFAF";
+    } else {
+      return "#00FF00";
+    }
   }
 
   render() {
-    let styles = {
-      window: {
-        width: this.state.width,
-        height: this.state.height,
-        "background-color": this.state.color
-      },
-      status: {
-        "text-align": "center",
-        "margin-top": (this.state.height / 4) - 43,
-        "margin-bottom": (this.state.height / 4) - 43
-      },
-      details: {
-        height: (this.state.height - 25) / 2,
-        float: "left"
-      }
-    }
+    document.body.style = "background: " + this.state.color;
     return (
-      <window style={styles.window}>
+      <span>
         <h1 class="title">Jake Status</h1>
-        <h2 style={styles.status}>
-          Currently Available!
+        <h2 class="availability">
+          Currently (Un)available!
         </h2>
-        <div style={styles.details} class="detail-section">
-          <Stress height={styles.details.height} width={styles.window.width / 3}/>
-          <Vibe height={styles.details.height} width={styles.window.width / 3}/>
-          <Countdown height={styles.details.height} width={styles.window.width / 3}/>
+        <div class="detail-section">
+          <Stress stress={this.state.stress}/>
+          <Vibe stress={this.state.stress}/>
+          <Countdown />
         </div>
-      </window>
-    )
+      </span>
+    );
   }
   
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 export default App;

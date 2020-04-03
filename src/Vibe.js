@@ -9,10 +9,11 @@ class Vibe extends React.Component {
 
     render() {
         return (
-            <div class="detail-container">
-                <div style={this.props.color}>
-                    <h2 class="detail-title">Vibe</h2>
-                    
+            <div class="detail-container-large">
+                <div class="detail-title-container">
+                    <h3 class="detail-title">Vibe</h3>
+                    <div class="detail-content-container">
+                    </div>
                 </div>
             </div>
         );

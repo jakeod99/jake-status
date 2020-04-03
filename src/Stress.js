@@ -9,9 +9,12 @@ class Stress extends React.Component {
 
     render() {
         return (
-            <div class="detail-container">
-                <div style={this.props.color}>
-                    <h2 class="detail-title">Stress Level</h2>
+            <div class="detail-container-small">
+                <div class="detail-title-container">
+                    <h3 class="detail-title">Stress Level</h3>
+                    <div class="detail-content-container">
+                        <h1 class="stress-level"> {this.props.stress} </h1>
+                    </div>
                 </div>
             </div>
         );
