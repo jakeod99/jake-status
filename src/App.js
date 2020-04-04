@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Stress from './Stress';
 import Vibe from './Vibe';
@@ -13,28 +12,33 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stress: 0, //google sheets api call
-      color: "#AFAFAF", //google sheets api call
-      available: true, //google calendar api call
-      "time-until-availability-change": 0, //google calendar api call
+      stress: -1, // 0-10 stress level provided by To Do google sheet
+      color: "#AFAFAF", // background color, determined by stress/availability
+      available: true, // currently available? provided by google calendar
+      countdown: 0, // remaining seconds until availability shift
     };
-    this.updateStress = this.updateStress.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
   
   componentDidMount() {
-    this.updateStress();
+    this.updateState();
     // window.addEventListener('', this.updateState);
   }
   
   componentWillUnmount() {
     // window.addEventListener('', this.updateState);
   }
-  
-  updateStress() {
+
+  updateState() {
     this.fetchStress().then(stress => {
-      this.setState({
-        stress: stress
-      });    
+      this.fetchAvailability().then(availability => {
+        this.setState({
+          stress: stress,
+          color: this.getColor(stress, availability),
+          available: availability,
+          countdown: 0
+        });
+      });
     });
   }
 
@@ -45,11 +49,28 @@ class App extends React.Component {
     return fetch(call).then(res => res.json()).then(json => json.values[0][0]);
   }
 
+  async fetchAvailability() {
+    return true;
+  }
+
   getColor(stress, available) {
-    if (typeof stress === "undefined" || !available) {
-      return "#AFAFAF";
+    if (typeof available === "undefined" || !available) {
+      return "#FFBFBF";
     } else {
-      return "#00FF00";
+      switch (stress) {
+        case "0": return "#BFFFBF";
+        case "1": return "#CAFFBF";
+        case "2": return "#D4FFBF";
+        case "3": return "#DFFFBF";
+        case "4": return "#EAFFBF";
+        case "5": return "#F4FFBF";
+        case "6": return "#FFFFBF";
+        case "7": return "#FFF4BF";
+        case "8": return "#FFEABF";
+        case "9": return "#FFDFBF";
+        case "10": return "#FFD4BF";
+        default: return "#AFAFAF";
+      };
     }
   }
 

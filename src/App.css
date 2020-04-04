@@ -57,11 +57,21 @@ h3 {
   margin: auto;
 }
 
-.detail-content-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
+.detail-content-container-small,
+.detail-content-container-large {
+  margin: auto;
+  padding: 1vh 1vw;
+  max-height: 42vh;
+}
+
+.detail-content-container-small {
+  max-width: 27vw
+}
+
+.detail-content-container-large,
+.detail-content-container-large > img {
+  max-height: 42vh;
+  max-width: 37vw;
 }
 
 .stress-level {
