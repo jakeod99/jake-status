@@ -23,7 +23,15 @@ h3 {
 
 .availability {
   text-align: center;
-  margin: 7vh auto 15vh;
+  margin: 5vh auto 15vh;
+}
+
+.message {
+  margin: 0 auto 1vh;
+}
+
+.elaboration {
+  margin: 0;
 }
 
 .detail-section {
@@ -76,4 +84,20 @@ h3 {
 
 .stress-level {
   margin: 0;
+}
+
+.display-time {
+  margin-bottom: 0;
+}
+
+@media screen and (max-height: 400pt) {
+  
+  .title {
+    margin: 1vh auto;
+  }
+
+  .availability {
+    margin: 2vh auto 6vh;
+  }
+
 }

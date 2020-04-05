@@ -8,12 +8,17 @@ class Countdown extends React.Component {
     }
 
     render() {
+        const title = (this.props.available) ? "A" : "Una";
+        const shift = new Date(this.props.shift);
+        const displayTime = shift.toLocaleTimeString()
+        const date = shift.toLocaleDateString();
         return (
             <div class="detail-container-small">
                 <div class="detail-title-container">
-                    <h3 class="detail-title">Available until</h3>
+                    <h3 class="detail-title">{title}vailable until</h3>
                     <div class="detail-content-container-small">
-                        <p>feature coming soon</p>
+                        <h3 class="display-time">{displayTime}</h3>
+                        <p class="elaboration">({date})</p>
                     </div>
                 </div>
             </div>

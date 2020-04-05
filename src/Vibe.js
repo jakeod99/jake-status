@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Bamboozled from './vibe-gifs/bamboozled.gif'                    // 7-10
+import Bamboozled from './vibe-gifs/bamboozled.gif';                   // 7-10
+import BeanField from './vibe-gifs/bean-field.gif';                    // 0-2
 import BulldogMotorcycle from './vibe-gifs/bulldog-motorcycle.gif';    // 3-4
 import BulldogSleepy from './vibe-gifs/bulldog-sleepy.gif';            // 0-2
 import BulldogSnacking from './vibe-gifs/bulldog-snacking.gif';        // 0-2
@@ -9,12 +10,15 @@ import BulldogSwing from './vibe-gifs/bulldog-swing.gif';              // 0-2
 import BulldogTrampoline from './vibe-gifs/bulldog-trampoline.gif';    // 0-2
 import BulldogTreadmill from './vibe-gifs/bulldog-treadmill.gif';      // 5-6
 import BunnySleep from './vibe-gifs/bunny-sleep.gif';                  // 0-2
+import CookieMonsterWait from './vibe-gifs/cookie-monster-wait.gif';   // 0-2
 import CostanzaSerenity from './vibe-gifs/costanza-serenity.gif';      // 5-6
+import DaffyNervous from './vibe-gifs/daffy-nervous.gif';              // 3-4
 import DogHammock from './vibe-gifs/dog-hammock.gif';                  // 0-2
 import DogHomework from './vibe-gifs/dog-homework.gif';                // 3-4
 import DogOutOfBed from './vibe-gifs/dog-out-of-bed.gif';              // 0-2
 import DogPjs from './vibe-gifs/dog-pjs.gif';                          // 0-2
 import DogReading from './vibe-gifs/dog-reading.gif';                  // 3-4
+import DogShockGround from './vibe-gifs/dog-shock-ground.gif';         // 5-6
 import DogTreadmill from './vibe-gifs/dog-treadmill.gif';              // 3-4
 import DogTyping from './vibe-gifs/dog-typing.gif';                    // 3-4
 import DrinkScience from './vibe-gifs/drink-science.gif';              // 3-4
@@ -51,6 +55,7 @@ import ShibaInuWorking from './vibe-gifs/shiba-inu-working.gif';       // 3-4
 import ShockedDog from './vibe-gifs/shocked-dog.gif';                  // 5-6
 import SlothCarrots from './vibe-gifs/sloth-carrots.gif';              // 0-2
 import SpongebobCleaning from './vibe-gifs/spongebob-cleaning.gif';    // 7-10
+import SpongebobCoffee from './vibe-gifs/spongebob-coffee.gif';        // 0-2
 import SpongebobReading from './vibe-gifs/spongebob-reading.gif';      // 3-4
 import SylvesterCoffee from './vibe-gifs/sylvester-coffee.gif';        // 7-10
 import ThreeLaptops from './vibe-gifs/three-laptops.gif';              // 7-10
@@ -64,16 +69,16 @@ class Vibe extends React.Component {
     }
 
     getVibe(stress) {
-        if (typeof stress === "undefined") {
+        if (typeof stress === "undefined" || stress == -1) {
             return GumpDumb;
         } else if (stress <= 2) {
-            const noStressGifs = [BulldogSleepy, BulldogSnacking, BulldogStretch, BulldogSwing, BulldogTrampoline, BunnySleep, DogHammock, DogOutOfBed, DogPjs, HuskyEatFloor, KorgiTv, KramerChicken, LazyDogPool, LazyRaccoon, OfficeSpaceBobs, PatrickNothing, PoohSleep, PushFetch, SlothCarrots];
+            const noStressGifs = [BeanField, BulldogSleepy, BulldogSnacking, BulldogStretch, BulldogSwing, BulldogTrampoline, BunnySleep, CookieMonsterWait, DogHammock, DogOutOfBed, DogPjs, HuskyEatFloor, KorgiTv, KramerChicken, LazyDogPool, LazyRaccoon, OfficeSpaceBobs, PatrickNothing, PoohSleep, PushFetch, SlothCarrots, SpongebobCoffee];
             return noStressGifs[Math.floor(Math.random() * noStressGifs.length)];
         } else if (stress <= 4) {
-            const lowStressGifs = [BulldogMotorcycle, DogHomework, DogReading, DogTreadmill, DogTyping, DrinkScience, EeyoreBored, EeyoreThankful, HomerElectricution, HomerMonkey, HomerWork, OfficeSpaceApathy, PenguinWork, PoohThinking, ShibaInuWorking, SpongebobReading, WeinerDog];
+            const lowStressGifs = [BulldogMotorcycle, DaffyNervous, DogHomework, DogReading, DogTreadmill, DogTyping, DrinkScience, EeyoreBored, EeyoreThankful, HomerElectricution, HomerMonkey, HomerWork, OfficeSpaceApathy, PenguinWork, PoohThinking, ShibaInuWorking, SpongebobReading, WeinerDog];
             return lowStressGifs[Math.floor(Math.random() * lowStressGifs.length)];
         } else if (stress <= 6) {
-            const midStressGifs = [BulldogTreadmill, CostanzaSerenity, HomerWorkMoney, KermitNervous, KermitType, KorgiTyping, MichaelScottCringe, PugShock, ShockedDog, UprightDogShock];
+            const midStressGifs = [BulldogTreadmill, CostanzaSerenity, DogShockGround, HomerWorkMoney, KermitNervous, KermitType, KorgiTyping, MichaelScottCringe, PugShock, ShockedDog, UprightDogShock];
             return midStressGifs[Math.floor(Math.random() * midStressGifs.length)];
         } else {
             const highStressGifs = [Bamboozled, FireTyping, HomerScream, KermitFrantic, KramerShock, KramerTooMuch, SpongebobCleaning, SylvesterCoffee, ThreeLaptops];
