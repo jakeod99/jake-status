@@ -22,11 +22,11 @@ class App extends React.Component {
   
   componentDidMount() {
     this.updateState();
-    // window.addEventListener('', this.updateState);
+    setInterval(this.updateState, 4 * 60 * 1000);
   }
   
   componentWillUnmount() {
-    // window.addEventListener('', this.updateState);
+    clearInterval(this.updateState);
   }
 
   updateState() {
