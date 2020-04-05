@@ -50,7 +50,7 @@ class App extends React.Component {
   }
 
   async fetchAvailability() {
-    const timeMax = (new Date(Date.now() + 24 * 60 * 60 * 1000)).toISOString();
+    const timeMax = (new Date(Date.now() + 72 * 60 * 60 * 1000)).toISOString();
     const timeMin = (new Date()).toISOString();
     const calID = process.env.REACT_APP_CALENDAR_ID;
     const requestOptions = {

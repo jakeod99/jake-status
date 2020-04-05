@@ -19,6 +19,7 @@ h3 {
 .title {
   text-align: center;
   margin: 3vh auto;
+  text-decoration: underline;
 }
 
 .availability {
@@ -63,6 +64,7 @@ h3 {
   text-align: center;
   width: 100%;
   margin: auto;
+  text-decoration: underline;
 }
 
 .detail-content-container-small,
@@ -82,12 +84,9 @@ h3 {
   max-width: 37vw;
 }
 
-.stress-level {
-  margin: 0;
-}
-
+.stress-level,
 .display-time {
-  margin-bottom: 0;
+  margin: 0;
 }
 
 @media screen and (max-height: 400pt) {
@@ -98,6 +97,28 @@ h3 {
 
   .availability {
     margin: 2vh auto 6vh;
+  }
+
+}
+
+@media screen and (max-width: 675pt) {
+
+  .stress-level,
+  .display-time {
+    font-size: 24pt;
+  }
+
+}
+
+@media screen and (max-width: 488pt) {
+
+  .stress-level,
+  .display-time {
+    font-size: 18pt;
+  }
+
+  .detail-title {
+    font-size: 14pt;
   }
 
 }
