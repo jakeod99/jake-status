@@ -7,6 +7,22 @@ class Countdown extends React.Component {
         super(props);
     }
 
+    getUntil(date, displayTime) {
+        if (date === (new Date()).toLocaleDateString()) {
+            return (
+                <div class="detail-content-container-small">
+                    <h1 class="display-time">{displayTime}</h1>
+                    <p class="elaboration">({date})</p>
+                </div>
+            );
+        }
+        return (
+            <div class="detail-content-container-small">
+                <h1 class="display-time">Tomorrow</h1>
+            </div>
+        );
+    }
+
     render() {
         const title = (this.props.available) ? "A" : "Una";
         const shift = new Date(this.props.shift);
@@ -17,10 +33,7 @@ class Countdown extends React.Component {
             <div class="detail-container-small">
                 <div class="detail-title-container">
                     <h3 class="detail-title">{title}vailable until</h3>
-                    <div class="detail-content-container-small">
-                        <h1 class="display-time">{displayTime}</h1>
-                        <p class="elaboration">({date})</p>
-                    </div>
+                    {this.getUntil(date, displayTime)}
                 </div>
             </div>
         );
